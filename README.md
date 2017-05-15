@@ -30,3 +30,30 @@ quits, without any flicker of a login dialog box.
 If one is not setting up a kiosk-like setup, it's very likely that the default
 autologin behaviour of lightdm is the way to go, and that this greeter is not
 needed.
+
+## Installation instructions
+
+The installation is very simple.
+
+1. Install PyGObject and LightDM with GObject Introspection bindings
+
+These are usually provided by your Linux distribution.
+
+For Fedora/CentOS, you need to install `lightdm`, `pygobject3`, and `lightdm-gobject`.
+
+```bash
+
+$ sudo yum install lightdm pygobject3 lightdm-gobject
+```
+
+For Debian/Ubuntu, you need to install `lightdm`, `python-gobject`, `liblightdm-gobject-1-0`, and `gir1.2-lightdm-1`.
+
+```bash
+$ sudo apt install lightdm python-gobject liblightdm-gobject-1-0 gir1.2-lightdm-1
+```
+
+2. Copy the files in `bin/` and `share/` to `/usr`
+
+3. Ensure no other greeter is configured and reboot.
+
+You'll now be using the autologin greeter!
