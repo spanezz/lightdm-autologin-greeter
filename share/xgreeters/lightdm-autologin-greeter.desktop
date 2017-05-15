@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=LightDM AutoLogin Greeter
+Comment=This runs the autologin greeter, it should only be run from LightDM
+Exec=lightdm-autologin-greeter
+Type=Application
