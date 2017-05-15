@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+#
+# Author: Enrico Zini <enrico@enricozini.org>
+# Based on http://www.mattfischer.com/blog/?p=5
+# Lightdm library documentation:
+# http://people.ubuntu.com/~robert-ancell/lightdm/reference/
+
+# required packages:
+# liblightdm-gobject-1-0
+# gir1.2-lightdm-1
+# python-gobject
+
+from gi.repository import GObject
+from gi.repository import LightDM
+import sys
+
+greeter = None
+
+# Callback for after we send LightDM the password, this method
+# has to handle a successful login, in which case we start the session
+# or a failed login, in which case we tell the user
+def authentication_complete_cb(greeter):
+    if greeter.get_is_authenticated():
+        if not greeter.start_session_sync("lightdm-xsession"):
+            print >> sys.stderr, "Failed to start session"
+    else:
+        print >> sys.stderr, "Login failed"
+
+if __name__ == '__main__':
+    main_loop = GObject.MainLoop ()
+    greeter = LightDM.Greeter()
+
+    # connect signal handlers to LightDM
+    greeter.connect ("authentication-complete", authentication_complete_cb)
+
+    # connect to greeter
+    greeter.connect_sync()
+    greeter.authenticate_autologin()
+
+    main_loop.run ()
