@@ -1,15 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 #
 # Author: Enrico Zini <enrico@enricozini.org>
 # Based on http://www.mattfischer.com/blog/?p=5
 # Lightdm library documentation:
 # http://people.ubuntu.com/~robert-ancell/lightdm/reference/
 
-# required packages:
-# liblightdm-gobject-1-0
-# gir1.2-lightdm-1
-# python-gobject
-
+from __future__ import print_function
 from gi.repository import GObject
 from gi.repository import LightDM
 import sys
@@ -22,9 +18,9 @@ greeter = None
 def authentication_complete_cb(greeter):
     if greeter.get_is_authenticated():
         if not greeter.start_session_sync("lightdm-xsession"):
-            print >> sys.stderr, "Failed to start session"
+            print("Failed to start session", file=sys.stderr)
     else:
-        print >> sys.stderr, "Login failed"
+        print("Login failed", file=sys.stderr)
 
 if __name__ == '__main__':
     main_loop = GObject.MainLoop ()
