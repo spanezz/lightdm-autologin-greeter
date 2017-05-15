@@ -17,7 +17,7 @@ greeter = None
 # or a failed login, in which case we tell the user
 def authentication_complete_cb(greeter):
     if greeter.get_is_authenticated():
-        if not greeter.start_session_sync("lightdm-xsession"):
+        if not greeter.start_session_sync(None):
             print("Failed to start session", file=sys.stderr)
     else:
         print("Login failed", file=sys.stderr)
