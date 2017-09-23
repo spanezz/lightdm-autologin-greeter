@@ -31,29 +31,26 @@ If one is not setting up a kiosk-like setup, it's very likely that the default
 autologin behaviour of lightdm is the way to go, and that this greeter is not
 needed.
 
-## Installation instructions
+### Dependencies
 
-The installation is very simple.
+|                     | arch           | ubuntu           | fedora          | suse                   |
+| ------------------- | -------------- | ---------------- | --------------- | ---------------------- |
+| **lightdm**         | lightdm        | lightdm          | lightdm         | lightdm                |
+| **lightdm-gobject** | lightdm        | gir1.2-lightdm-1 | lightdm-gobject | liblightdm-gobject-1-0 |
+| **PyGObject**       | python-gobject | python-gobject   | pygobject3      | python3-gobject        |
 
-1. Install PyGObject and LightDM with GObject Introspection bindings
+### Installation
 
-These are usually provided by your Linux distribution.
+| Distribution | Installation command                                                 |
+| ------------ | -------------------------------------------------------------------- |
+| **arch**     | `sudo pacman -S lightdm python-gobject`                              |
+| **ubuntu**   | `sudo apt-get install lightdm gir1.2-lightdm-1 python-gobject`       |
+| **fedora**   | `sudo dnf install lightdm lightdm-gobject pygobject3`                |
+| **suse**     | `sudo zypper install lightdm liblightdm-gobject-1-0 python3-gobject` |
 
-For Fedora/CentOS, you need to install `lightdm`, `pygobject3`, and `lightdm-gobject`.
-
-```bash
-
-$ sudo yum install lightdm pygobject3 lightdm-gobject
-```
-
-For Debian/Ubuntu, you need to install `lightdm`, `python-gobject`, `liblightdm-gobject-1-0`, and `gir1.2-lightdm-1`.
-
-```bash
-$ sudo apt install lightdm python-gobject liblightdm-gobject-1-0 gir1.2-lightdm-1
-```
-
-2. Copy the files in `bin/` and `share/` to `/usr`
-
-3. Ensure no other greeter is configured and reboot.
+1. Install the dependencies.
+2. Clone/download the project.
+3. Copy the files in `bin/` and `share/` to `/usr`.
+4. Ensure no other greeter is configured and reboot.
 
 You'll now be using the autologin greeter!
