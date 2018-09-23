@@ -6,6 +6,8 @@
 # http://people.ubuntu.com/~robert-ancell/lightdm/reference/
 
 from __future__ import print_function
+import gi
+gi.require_version('LightDM', '1')
 from gi.repository import GObject
 from gi.repository import LightDM
 import sys
