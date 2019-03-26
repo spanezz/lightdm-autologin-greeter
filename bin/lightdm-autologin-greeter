@@ -8,7 +8,7 @@
 from __future__ import print_function
 import gi
 gi.require_version('LightDM', '1')
-from gi.repository import GObject
+from gi.repository import GLib
 from gi.repository import LightDM
 import sys
 
@@ -25,14 +25,14 @@ def authentication_complete_cb(greeter):
         print("Login failed", file=sys.stderr)
 
 if __name__ == '__main__':
-    main_loop = GObject.MainLoop ()
+    main_loop = GLib.MainLoop ()
     greeter = LightDM.Greeter()
 
     # connect signal handlers to LightDM
     greeter.connect ("authentication-complete", authentication_complete_cb)
 
     # connect to greeter
-    greeter.connect_sync()
+    greeter.connect_to_daemon_sync()
     greeter.authenticate_autologin()
 
     main_loop.run ()
